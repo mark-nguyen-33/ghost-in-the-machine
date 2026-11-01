@@ -1,10 +1,10 @@
-# Ghost in the Machine
+# An Unwritten Diary
 
 An AI-powered historical survival narrative game built with TypeScript, Express, and Google's Gemini API.
 
 ## About the Project
 
-*Ghost in the Machine* is an interactive narrative game inspired by the Oregon Trail and the diary of Anne Frank.
+*An Unwritten Diary* is an interactive narrative game inspired by the Oregon Trail and the diary of Anne Frank.
 
 The player takes the role of a parent trying to protect their family while navigating the uncertainty, difficult decisions, and dangers of life under Nazi occupation in the Netherlands during 1942.
 

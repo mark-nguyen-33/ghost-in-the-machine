@@ -56,7 +56,7 @@ function calculateStatChanges(
 function renderHeader(): string {
   return `
     <header class="game-header">
-      <h1>Ghost in the Machine</h1>
+      <h1>An Unwritten Diary</h1>
       <p>A fictional historical survival story</p>
     </header>
   `
