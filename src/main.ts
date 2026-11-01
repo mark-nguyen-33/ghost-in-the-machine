@@ -24,6 +24,7 @@ let latestStatChanges: Partial<Record<keyof GameStats, number>> = {}
 let latestUpkeepChange = 0
 let isLoading = false
 let endedEarly = false
+let selectedAIModel: 'gemini' | 'gemma' = 'gemini'
 
 const app = document.querySelector<HTMLDivElement>('#app')!
 
@@ -156,6 +157,17 @@ function renderDecisionSection(): string {
           id="additional-details"
           placeholder="Describe how you want your character to approach this decision..."
         ></textarea>
+
+        <label for="ai-model">Narrative AI:</label>
+
+        <select id="ai-model">
+          <option value="gemini" ${selectedAIModel === 'gemini' ? 'selected' : ''}>
+            Gemini (Recommended)
+          </option>
+          <option value="gemma" ${selectedAIModel === 'gemma' ? 'selected' : ''}>
+            Gemma (Open Weights)
+          </option>
+        </select>
 
         <button id="confirm-button" class="primary-button">
           Confirm choice
@@ -379,6 +391,13 @@ function attachEventListeners(): void {
   })
 
   // Additional details
+  const modelInput =
+      document.querySelector<HTMLSelectElement>('#ai-model')
+
+  modelInput?.addEventListener('change', () => {
+      selectedAIModel = modelInput.value as 'gemini' | 'gemma'
+  })
+
   const detailsInput =
     document.querySelector<HTMLTextAreaElement>('#additional-details')
 
@@ -430,7 +449,8 @@ async function confirmChoice(): Promise<void> {
           choice,
           gameState,
           additionalDetails,
-          responseTemplate
+          responseTemplate,
+          model: selectedAIModel
         })
       })
 

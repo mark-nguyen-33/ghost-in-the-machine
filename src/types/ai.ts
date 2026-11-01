@@ -13,6 +13,7 @@ export type AIChoiceRequest = {
   gameState: GameState
   additionalDetails: string
   responseTemplate: ResponseTemplate
+  model: 'gemini' | 'gemma'
 }
 
 // A single line of character dialogue.

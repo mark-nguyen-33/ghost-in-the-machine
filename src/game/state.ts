@@ -9,7 +9,7 @@ export function createInitialGameState(): GameState {
       familyTrust: 5,
       supplies: 10,
       savings: 200,
-      attention: 2,
+      attention: 0,
       outsideContacts: 1
     },
 

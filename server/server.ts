@@ -113,21 +113,36 @@ app.post('/api/choice', async (req, res) => {
 
         let response
 
+        const selectedModel =
+            request.model === 'gemma'
+                ? 'gemma-4-26b-a4b-it'
+                : 'gemini-3.5-flash-lite'
+
+        const generationConfig = request.model === 'gemma'
+            ? undefined
+            : { responseMimeType: 'application/json' }
+
         for (let attempt = 1; attempt <= 3; attempt++) {
             try {
                 response = await ai.models.generateContent({
-                    model: 'gemini-3.5-flash-lite',
+                    model: selectedModel,
                     contents: prompt,
-                    config: {
-                        responseMimeType: 'application/json'
-                    }
+                    config: generationConfig
                 })
 
                 break
             } catch (error: any) {
-                if (error.status !== 503 || attempt === 3) {
-                    throw error
+                const retryableStatuses = [500, 502, 503, 504]
+
+                if (!retryableStatuses.includes(error.status) || attempt === 3) {
+                throw error
                 }
+
+                console.log(
+                `Google API error (${error.status}). Retrying (${attempt}/3)...`
+                )
+
+                await new Promise(resolve => setTimeout(resolve, attempt * 2000))
 
                 console.log(`Model busy. Retrying (${attempt}/3)...`)
                 await new Promise(resolve => setTimeout(resolve, attempt * 2000))
@@ -138,10 +153,10 @@ app.post('/api/choice', async (req, res) => {
             throw new Error('Model failed after 3 attempts.')
         }
 
-        // Inspect the response if Gemini doesn't generate any text.
+        // Inspect the response if the AI doesn't generate any text.
         if (!response.text) {
             console.error(
-                'Gemini response diagnostics:',
+                'AI response diagnostics:',
                 JSON.stringify({
                     promptFeedback: response.promptFeedback,
 
@@ -156,23 +171,26 @@ app.post('/api/choice', async (req, res) => {
             )
 
             throw new Error(
-                'Gemma returned no text. Check the response diagnostics above.'
+                '${selectedModel} returned no text. Check the response diagnostics above.'
             )
         }
 
-        const result = response.text
+        const result = response.text.trim()
 
-        // Parse Gemma's JSON response.
-        const parsed: unknown = JSON.parse(result)
+        // Remove Markdown code fences if the model included them
+        const cleanedResult = result
+        .replace(/^```(?:json)?\s*/i, '')
+        .replace(/\s*```$/, '')
+        .trim()
 
-        // Validate the response before sending it to the frontend.
+        const parsed: unknown = JSON.parse(cleanedResult)
         const validated = validateAIResponse(parsed, request.choice)
 
         res.json(validated)
 
     } catch (error) {
         console.error('AI request failed:', error)
-        console.error('Prompt context sent to Gemini:')
+        console.error('Prompt context sent to the AI:')
         console.error(prompt)
 
         res.status(500).json({
