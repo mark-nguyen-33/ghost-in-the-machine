@@ -4,13 +4,13 @@ An AI-powered historical survival narrative game built with TypeScript, Express,
 
 ## About the Project
 
-*Ghost in the Machine* is an interactive narrative game inspired by the experiences of Jewish families during the Holocaust.
+*Ghost in the Machine* is an interactive narrative game inspired by the Oregon Trail and the diary of Anne Frank.
 
 The player takes the role of a parent trying to protect their family while navigating the uncertainty, difficult decisions, and dangers of life under Nazi occupation in the Netherlands during 1942.
 
 Players make decisions that influence their family's circumstances, relationships, available resources, and ultimately the direction of their story.
 
-The game combines a predetermined historical timeline with AI-generated narrative responses, allowing for more personalized interactions while maintaining the structure of the story.
+The game combines a predetermined historical timeline with AI-generated narrative responses to the player's written text input, allowing for more personalized interactions while maintaining the structure of the story.
 
 **Note:** The characters and family depicted in the game are fictional. The project is inspired by historical events and is not intended to recreate the experiences of any specific historical individual.
 
@@ -43,7 +43,7 @@ The game uses a combination of predetermined story content and AI-generated resp
 5. The backend validates the AI response before returning it.
 6. The game engine applies the approved adjustments and updates the game state.
 
-This approach allows AI to add variety to the storytelling without giving it unrestricted control over the game's underlying mechanics.
+This approach allows AI to add variety and immersion to the storytelling without giving it unrestricted control over the game's underlying mechanics.
 
 ## Running Locally
 

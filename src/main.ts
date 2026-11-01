@@ -14,6 +14,7 @@ import { evaluateEnding, checkEarlyEnding } from './game/endingEngine'
 import type { AIChoiceResponse } from './types/ai'
 import { responseTemplates } from './data/responseTemplates'
 
+const API_URL = import.meta.env.VITE_API_URL ?? ''
 let gameState = createInitialGameState()
 let selectedChoiceId = ''
 let additionalDetails = ''
@@ -419,7 +420,7 @@ async function confirmChoice(): Promise<void> {
       }
     } else {
       // Otherwise, ask the AI to generate a response
-      const response = await fetch('/api/choice', {
+      const response = await fetch(`${API_URL}/api/choice`, {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'

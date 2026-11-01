@@ -9,7 +9,7 @@ import type {
 import { validateAIResponse } from './validateAIResponse'
 
 const app = express()
-const PORT = 3000
+const PORT = Number(process.env.PORT) || 3000
 
 // Check that the API key exists.
 const apiKey = process.env.GEMINI_API_KEY
@@ -182,6 +182,6 @@ app.post('/api/choice', async (req, res) => {
     }
 })
 
-app.listen(PORT, () => {
-    console.log(`Backend running at http://localhost:${PORT}`)
+app.listen(PORT, '0.0.0.0', () => {
+    console.log(`Backend running on port ${PORT}`)
 })
