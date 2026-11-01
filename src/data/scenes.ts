@@ -27,7 +27,8 @@ export const scenes: Scene[] = [
         description: 'Approach someone you know, even though involving them could put them at risk.',
         baseConsequences: {
           outsideContacts: 1,
-          attention: 1
+          attention: 1,
+          supplies: 1
         },
         adjustmentLimits: {
           familyTrust: { min: -1, max: 1 },
@@ -44,7 +45,8 @@ export const scenes: Scene[] = [
         description: 'Look into possible routes, documents, and people who might help.',
         baseConsequences: {
           savings: -10,
-          attention: 1
+          attention: 1,
+          supplies: 1
         },
         adjustmentLimits: {
           familyTrust: { min: -2, max: 3 },
@@ -61,7 +63,8 @@ export const scenes: Scene[] = [
         description: 'Try to find reliable information from people facing similar circumstances.',
         baseConsequences: {
           outsideContacts: 1,
-          attention: 2
+          attention: 2,
+          supplies: 1
         },
         adjustmentLimits: {
           familyTrust: { min: -1, max: 1 },
@@ -95,12 +98,13 @@ export const scenes: Scene[] = [
         baseConsequences: {
           attention: 1,
           familyTrust: 1,
+          supplies: 1
         },
         adjustmentLimits: {
           familyTrust: { min: -1, max: 2 },
-          supplies: { min: -1, max: 3 },
+          supplies: { min: -1, max: 5 },
           savings: { min: -20, max: 20 },
-          attention: { min: -1, max: 1 },
+          attention: { min: -1, max: 2 },
           outsideContacts: { min: -1, max: 1 }
         },
         advancesScene: false
@@ -126,7 +130,8 @@ export const scenes: Scene[] = [
         description: 'Give Anna a predictable schedule and familiar activities.',
         baseConsequences: {
           attention: 1,
-          familyTrust: 1
+          familyTrust: 1,
+          supplies: 1
         },
         adjustmentLimits: {
           familyTrust: { min: -1, max: 2 },
@@ -143,7 +148,8 @@ export const scenes: Scene[] = [
         description: 'Try to preserve a connection to the world beyond the hiding place.',
         baseConsequences: {
           outsideContacts: 1,
-          attention: 2
+          attention: 2,
+          supplies: 1
         },
         adjustmentLimits: {
           familyTrust: { min: -1, max: 1 },
@@ -159,7 +165,8 @@ export const scenes: Scene[] = [
         title: 'Organize the available supplies',
         description: 'Make an inventory and discuss how to use what you have carefully.',
         baseConsequences: {
-          familyTrust: 1
+          familyTrust: 1,
+          supplies: 1
         },
         adjustmentLimits: {
           familyTrust: { min: -1, max: 1 },
@@ -206,7 +213,8 @@ export const scenes: Scene[] = [
         description: 'Contact someone you trust and explain the situation.',
         baseConsequences: {
           attention: 1,
-          supplies: 3
+          savings: -15,
+          supplies: 4
         },
         adjustmentLimits: {
           familyTrust: { min: -1, max: 1 },
@@ -222,7 +230,7 @@ export const scenes: Scene[] = [
         title: 'Make the supplies last longer',
         description: 'Review what you have and adjust the household routine.',
         baseConsequences: {
-          supplies: 3,
+          supplies: 4,
           familyTrust: -2
         },
         adjustmentLimits: {
@@ -240,7 +248,8 @@ export const scenes: Scene[] = [
         description: 'Seek reliable news without relying on rumors.',
         baseConsequences: {
           outsideContacts: 1,
-          attention: 2
+          attention: 2,
+          supplies: 2
         },
         adjustmentLimits: {
           familyTrust: { min: -1, max: 1 },
@@ -256,7 +265,7 @@ export const scenes: Scene[] = [
         title: 'Focus on Anna and the family',
         description: 'Try to reduce tension and help everyone cope with uncertainty.',
         baseConsequences: {
-          familyTrust: 1
+          familyTrust: 2,
         },
         adjustmentLimits: {
           familyTrust: { min: -1, max: 2 },
@@ -321,7 +330,8 @@ export const scenes: Scene[] = [
         title: 'Share memories from before the war',
         description: 'Tell Anna stories about family traditions and familiar places.',
         baseConsequences: {
-          familyTrust: 1
+          familyTrust: 1,
+          supplies: 1
         },
         adjustmentLimits: {
           familyTrust: { min: -1, max: 2 },
@@ -356,6 +366,7 @@ export const scenes: Scene[] = [
         description: 'Avoid drawing attention and spend a peaceful evening together.',
         baseConsequences: {
           familyTrust: -2,
+          supplies: 1
         },
         adjustmentLimits: {
           familyTrust: { min: -1, max: 2 },
